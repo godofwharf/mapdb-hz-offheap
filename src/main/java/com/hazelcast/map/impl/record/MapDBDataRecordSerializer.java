@@ -21,7 +21,10 @@ public  class MapDBDataRecordSerializer extends Serializer<Record> implements Se
 
     @Override
     public Record deserialize(DataInput in, int available) throws IOException {
-        return new DataRecordWithStats(ds.deserialize(in,-1),ds.deserialize(in,-1));
+        DataRecordWithStats record = new DataRecordWithStats();
+        record.setKey(ds.deserialize(in,-1));
+        record.setValue(ds.deserialize(in,-1));
+        return record;
     }
 
 

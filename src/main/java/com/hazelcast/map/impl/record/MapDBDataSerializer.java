@@ -1,7 +1,7 @@
 package com.hazelcast.map.impl.record;
 
+import com.hazelcast.internal.serialization.impl.HeapData;
 import com.hazelcast.nio.serialization.Data;
-import com.hazelcast.nio.serialization.DefaultData;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -22,7 +22,8 @@ public class MapDBDataSerializer extends org.mapdb.Serializer<Data> implements S
         int size = dataInput.readInt();
         byte[] b = new byte[size];
         dataInput.readFully(b);
-        return new DefaultData(b);
+
+        return new HeapData(b);
     }
 
     @Override
